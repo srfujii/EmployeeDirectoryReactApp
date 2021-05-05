@@ -28,17 +28,6 @@ function ResultList(props) {
         </div>
         {htmlProps}
         </>
-
-
-        //    <ul className="list-group">
-        //         <li> I'm a fucking list item</li>
-        //             {props.results.map(employee => (
-        //                 <li className="list-group-item" key={employee.phone}>
-        //                 <img alt={employee.name} className="img-fluid" src={employee.picture.thumbnail} />
-        //                 {/* {employee.name} {employee.phone} {employee.email} {employee.dob} */}
-        //                 </li>
-        //             ))}
-        //     </ul>
     );
 }
 
