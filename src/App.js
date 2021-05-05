@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Insert Pretty Employee Directory Jumbotron Here :-P</p>
+        <p>Employee Directory</p>
       </header>
       <EmpDir />
     </div>
