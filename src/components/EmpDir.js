@@ -6,22 +6,37 @@ import React, { Component } from "react";
 // import SearchForm from "./SearchForm";
 // import MovieDetail from "./MovieDetail";
 import API from "../utils/API";
+import ResultList from "./ResultList";
 
 class EmployeeContainer extends Component {
     state = {
-        result: {},
+        results: [],
         search: ""
     };
 
-    // When this component mounts, search for the movie "The Matrix"
+    searchEmployees = () => {
+        API.search()
+            .then(res => {
+                console.log("Res.data.results:", res.data.results);
+                this.setState({ results: res.data.results });
+                // console.log("API Search Results: ", res.data.results);
+                // console.log("This.state.results: ", this.state.results);
+            })
+            .catch(err => console.log(err));
+    };
+
+    // When this component mounts, search for employees
     componentDidMount() {
-        // this.searchEmployees();
+        this.searchEmployees();
     }
 
     render() {
-        return (
-            <h1>Hi! I'm here.</h1>
-        );
+
+        if (this.state.results) {
+            return (<ResultList results={this.state.results} />);
+        } else {
+            return "";
+        }
     }
 }
 

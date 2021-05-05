@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import EmpDir from "./components/EmpDir.js";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           Hello I am HERE!!!!!!!!!!!!!!!!
           Edit <code>src/App.js</code> and save to reload.
         </p>
+          <EmpDir />
         <a
           className="App-link"
           href="https://reactjs.org"
