@@ -18,6 +18,8 @@ class EmployeeContainer extends Component {
         API.search()
             .then(res => {
                 console.log("Res.data.results:", res.data.results);
+
+                // res.data.results.dob.date = "02/12/1973";
                 this.setState({ results: res.data.results });
                 // console.log("API Search Results: ", res.data.results);
                 // console.log("This.state.results: ", this.state.results);
