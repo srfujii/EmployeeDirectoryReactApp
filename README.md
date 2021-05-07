@@ -47,9 +47,9 @@
 
   ## Screenshots
 
-  ![Screenshot](./public/img/image01.png)
-  ![Screenshot](./public/img/image02.png)
-  ![Screenshot](./public/img/image03.png)
+  ![Screenshot](./image01.png)
+  ![Screenshot](./image02.png)
+  ![Screenshot](./image03.png)
 
 
   ## License
