@@ -5,7 +5,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Employee Directory</p>
+        <h1>Employee Directory</h1>
+        <p>Click on the "Name" column to sort employees by name, or use the search box:</p>
       </header>
       <EmpDir />
     </div>

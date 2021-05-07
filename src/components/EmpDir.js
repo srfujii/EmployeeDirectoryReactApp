@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-// import Container from "./Container";
-// import Row from "./Row";
-// import Col from "./Col";
-// import Card from "./Card";
-// import SearchForm from "./SearchForm";
-// import MovieDetail from "./MovieDetail";
 import API from "../utils/API";
 import ResultList from "./ResultList";
+import SearchForm from "./SearchForm";
 
 class EmployeeContainer extends Component {
     state = {
         results: [],
-        search: ""
+        search: "",
+        toggle: 1
     };
+
+    // When this component mounts, search for employees
+    componentDidMount() {
+        this.searchEmployees();
+    }
 
     searchEmployees = () => {
         API.search()
@@ -22,18 +23,86 @@ class EmployeeContainer extends Component {
             .catch(err => console.log(err));
     };
 
-    // When this component mounts, search for employees
-    componentDidMount() {
-        this.searchEmployees();
-    }
+    searchEmployeeResults = (query) => {
+        console.log("Query String: ", query);
+        console.log("Results: ", this.state.results);
+
+        const searchResultsArray = this.state.results.filter(employee => (
+            ((employee.name.first.includes(query)) ||
+                (employee.name.last.includes(query)))
+        ));
+        this.setState({ results: searchResultsArray });
+    };
+
+    handleInputChange = event => {
+        const value = event.target.value;
+
+        console.log("Value: ", value);
+
+        const searchResultsArray = this.state.results.filter(employee => (
+            ((employee.name.first.includes(value)) ||
+                (employee.name.last.includes(value)))
+        ));
+
+        this.setState({
+            search: value,
+            results: searchResultsArray
+        });
+    };
+
+    handleSort = event => {
+        
+        if (this.state.toggle === 1) {
+            this.setState({
+                results: this.state.results.sort((a, b) =>
+                    (a.name.first > b.name.first) 
+                    ? 1 
+                    : (a.name.first === b.name.first)
+                    ?
+                    ((a.name.last > b.name.last) 
+                    ? 1 
+                    : -1) 
+                    : -1),
+
+                toggle: -1    
+            });
+        } else {
+            this.setState({
+                results: this.state.results.sort((a, b) =>
+                    (a.name.first < b.name.first) 
+                    ? 1 
+                    : (a.name.first === b.name.first)
+                    ?
+                    ((a.name.last < b.name.last) 
+                    ? 1 
+                    : -1) 
+                    : -1),
+
+                toggle: 1    
+            });
+        }
+    };
+
+    // When the form is submitted, search the Giphy API for `this.state.search`
+    handleFormSubmit = event => {
+        event.preventDefault();
+        this.searchEmployeeResults(this.state.search);
+    };
 
     render() {
-
-        if (this.state.results) {
-            return (<ResultList results={this.state.results} />);
-        } else {
-            return "";
-        }
+        return (
+            <>
+                <SearchForm
+                    search={this.state.search}
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleInputChange={this.handleInputChange}
+                />
+                <ResultList 
+                    results={this.state.results}
+                    handleSort={this.handleSort}
+                />
+            </>
+        )
     }
 }
 

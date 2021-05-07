@@ -15,7 +15,26 @@
   color: white;
 }
 
+.App-header p {
+  font-size: 24px;
+}
+
 .App-link {
   color: #61dafb;
 }
 
+.form-group {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.container {
+  padding-bottom: 15px;
+}
+
+.sortable:hover {
+  cursor: pointer;
+  background-color: #32559c;
+  color: white;
+  border-radius: 5%;
+}
